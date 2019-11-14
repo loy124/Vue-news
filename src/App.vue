@@ -1,24 +1,25 @@
 <template>
-  <div id="app">hello</div>
+  <div id="app">
+    <!-- // 1 - strongly Recommended
+    <ToolBar></ToolBar>-->
+    <!-- 2 - Essential -->
+    <tool-bar></tool-bar>
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>
+import ToolBar from "./components/ToolBar.vue";
 export default {
-  methods: {
-    fetchDate() {
-      console.log("hello");
-    }
+  components: {
+    ToolBar
   }
 };
 </script>
 
 <style>
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+body {
+  padding: 0;
+  margin: 0;
 }
 </style>
