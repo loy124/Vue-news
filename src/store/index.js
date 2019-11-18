@@ -10,6 +10,11 @@ export const store = new Vuex.Store({
     ask: [],
     jobs: [],
   },
+  getters: {
+    fetchedAsk(state) {
+      return state.ask;
+    },
+  },
   mutations: {
     SET_NEWS(state, news) {
       state.news = news;
@@ -30,15 +35,31 @@ export const store = new Vuex.Store({
         })
         .catch(e => console.log(e));
     },
-    FETCH_ASK(context) {
+    FETCH_ASK({ commit }) {
       fetchAskList()
-        .then(res => context.commit('SET_ASK', res.data))
-        .catch(e => console.log(e));
+        .then(({ data }) => {
+          commit('SET_ASK', data);
+        })
+        .catch(error => {
+          console.log(error);
+        });
     },
-    FETCH_JOBS(context) {
+    // FETCH_ASK(context) {
+    //   fetchAskList()
+    //     .then(res => context.commit('SET_ASK', res.data))
+    //     .catch(e => console.log(e));
+    // },
+    FETCH_JOBS({ commit }) {
       fetchJobsList()
-        .then(res => context.commit('SET_JOBS', res.data))
+        .then(({ data }) => {
+          commit('SET_JOBS', data);
+        })
         .catch(e => console.log(e));
     },
+    // FETCH_JOBS(context) {
+    //   fetchJobsList()
+    //     .then(res => context.commit('SET_JOBS', res.data))
+    //     .catch(e => console.log(e));
+    // },
   },
 });
